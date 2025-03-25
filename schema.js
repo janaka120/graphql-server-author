@@ -40,6 +40,7 @@ export const typeDefs = `#graphql
         reviews: [Review]
         review(id: ID!): Review
         games: [Game]
+        game(id: ID!): Game
         authors: [Author]
     }
 `

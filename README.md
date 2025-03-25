@@ -56,5 +56,12 @@ query ReviewQuery($reviewId: ID!, $gameId: ID!, $authorId: ID!) {
     name
   }
 }
-
+`
+// variables
+`
+{
+  "reviewId": "1",
+  "gameId": "2",
+  "authorId": "3"
+}
 `

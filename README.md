@@ -38,3 +38,23 @@ const typeDefs = `#graphql
     books: [Book]
   }
 `;
+
+
+Query by review id, game id, author id
+`
+query ReviewQuery($reviewId: ID!, $gameId: ID!, $authorId: ID!) {
+  review(id: $reviewId) {
+    rating
+    content
+  },
+  game(id: $gameId) {
+    id,
+    title
+  },
+  author(id: $authorId) {
+    id,
+    name
+  }
+}
+
+`

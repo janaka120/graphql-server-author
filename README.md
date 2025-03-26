@@ -122,3 +122,20 @@ query queryGameReviews($gameId: ID!) {
   }
 }
 `
+
+### Mutation - create, update, delete
+// trigger mutation by Apollo Server
+`
+mutation DeleteGame($gameId: ID!) {
+  deleteGame(id: $gameId) {
+    id,
+    title
+  }
+}
+`
+// variables
+`
+{
+  gameId: "1"
+}
+`

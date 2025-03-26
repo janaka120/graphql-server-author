@@ -36,11 +36,11 @@ const resolvers = {
     }
   },
   Review: {
-    games(parent) {
-      return db.games.filter(g => g.id === parent.game_id)
+    game(parent) {
+      return db.games.find(g => g.id === parent.game_id)
     },
-    authors(parent) {
-      return db.authors.filter(a => a.id === parent.author_id)
+    author(parent) {
+      return db.authors.find(a => a.id === parent.author_id)
     }
   }
 }

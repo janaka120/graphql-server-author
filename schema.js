@@ -31,8 +31,8 @@ export const typeDefs = `#graphql
         id: ID!
         rating: Int!
         content: String!
-        games: [Game!]
-        authors: [Author!]
+        game: Game!
+        author: Author!
     }
     type Author {
         id: ID!

@@ -40,7 +40,7 @@ const typeDefs = `#graphql
 `;
 
 
-Query by review id, game id, author id
+### Query by review id, game id, author id
 `
 query ReviewQuery($reviewId: ID!, $gameId: ID!, $authorId: ID!) {
   review(id: $reviewId) {
@@ -63,5 +63,62 @@ query ReviewQuery($reviewId: ID!, $gameId: ID!, $authorId: ID!) {
   "reviewId": "1",
   "gameId": "2",
   "authorId": "3"
+}
+`
+
+### Add schema relation, query game review
+`
+export const typeDefs = #graphql
+    type Game {
+        id: ID!
+        title: String!
+        platform: [String!]!
+        reviews: [Review!]
+    }
+    type Review {
+        id: ID!
+        rating: Int!
+        content: String!
+        game: Game!
+        author: Author!
+    }
+`
+
+resolvers - When someone asks for the reviews of a Game, find all the reviews in our database where the game_id matches the id of the Game they're asking about, and return those reviews.
+The resolver function:
+
+1. Receives the parent object: This object represents the Game for which the reviews field is being queried.
+2. Filters db.reviews: It uses the filter() method to create a new array containing only the reviews where the game_id property matches the id property of the parent (the current game).
+3. Returns the filtered array: The resolver returns the resulting array of reviews, which represents the reviews associated with the specified game.
+`
+const resolvers = {
+  Query: {
+    review(parent, args) {
+      return db.reviews.find(review => review.id === args.id)
+    },
+    game(parent, args) {
+      return db.games.find(game => game.id === args.id)
+    }
+  },
+  Game: {
+    reviews(parent) {
+      return db.reviews.filter(r => r.game_id === parent.id)
+    }
+  }
+}
+`
+
+Query - Apollo sever 
+`
+query queryGameReviews($gameId: ID!) {
+  game(id: $gameId) {
+    id,
+    platform,
+    reviews {
+      id,
+      rating,
+      content
+    }
+  }
 }
 `

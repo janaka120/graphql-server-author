@@ -123,7 +123,7 @@ query queryGameReviews($gameId: ID!) {
 }
 `
 
-### Mutation - create, update, delete
+### Mutation - create, update, delete, In GraphQL, Mutation is a root type, similar to Query. It's used for operations that modify data on the server (e.g., creating, updating, or deleting).
 // trigger mutation by Apollo Server
 `
 mutation DeleteGame($gameId: ID!) {
@@ -139,3 +139,22 @@ mutation DeleteGame($gameId: ID!) {
   gameId: "1"
 }
 `
+
+#### Create Game
+
+`input AddGameInput { title: String platform: [String!] }`
+
+input AddGameInput:
+input is a special type in GraphQL used for defining the structure of arguments passed to mutations.
+It's similar to a regular object type, but it's specifically designed for input values.
+
+`
+type Mutation {
+  createGame(game: AddGameInput): Game
+}
+`
+
+This defines a mutation named createGame.
+game: AddGameInput:
+This specifies that the createGame mutation accepts a single argument named game.
+AddGameInput is the type of this argument. This means the client must provide data conforming to the AddGameInput structure.

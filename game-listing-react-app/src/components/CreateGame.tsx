@@ -111,9 +111,11 @@ const CreateGame = (props: CreateGameI) => {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-blue-300"
                         >
                             <option value="">Select Platform</option>
-                            <option value="PS5">PlayStation 5</option>
-                            <option value="Xbox">Xbox</option>
+                            <option value="Nintendo Switch">Nintendo Switch</option>
+                            <option value="PlayStation 5">PlayStation 5</option>
                             <option value="PC">PC</option>
+                            <option value="PlayStation 4">PlayStation 4</option>
+                            <option value="Xbox One">Xbox One</option>
                         </select>
                     </div>
                 </div>

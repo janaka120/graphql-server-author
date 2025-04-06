@@ -110,7 +110,7 @@ Once the application is running, you can:
 * **Update a game:** In the "Listing Games" section, each game entry may have an "Edit" icon (✏️). Clicking this icon will likely populate the "Add Game" section with the selected game's details, allowing you to modify them and click an "Update" button.
 * **Delete a game:** In the "Listing Games" section, each game entry will have a "Delete" icon (❌ or 🗑️). Clicking this icon will trigger a request to remove the game from the database.
 
-![Screenshot of Add Game Form](assets/homepage.png)
+![Screenshot of Add Game Form](public/homepage.png)
 
 ## Folder Structure (Example)
 

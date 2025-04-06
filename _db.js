@@ -1,25 +1,255 @@
 let games = [
-    {id: '1', title: 'Zelda, Tears of the Kingdom', platform: ['Switch']},
-    {id: '2', title: 'Final Fantasy 7 Remake', platform: ['PS5', 'Xbox']},
-    {id: '3', title: 'Elden Ring', platform: ['PS5', 'Xbox', 'PC']},
-    {id: '4', title: 'Mario Kart', platform: ['Switch']},
-    {id: '5', title: 'Pokemon Scarlet', platform: ['PS5', 'Xbox', 'PC']},
-  ]
-  
-  let authors = [
-    {id: '1', name: 'mario', verified: true},
-    {id: '2', name: 'yoshi', verified: false},
-    {id: '3', name: 'peach', verified: true},
-  ]
-  
-  let reviews = [
-    {id: '1', rating: 9, content: 'lorem ipsum', author_id: '1', game_id: '2'},
-    {id: '2', rating: 10, content: 'lorem ipsum', author_id: '2', game_id: '1'},
-    {id: '3', rating: 7, content: 'lorem ipsum', author_id: '3', game_id: '3'},
-    {id: '4', rating: 5, content: 'lorem ipsum', author_id: '2', game_id: '4'},
-    {id: '5', rating: 8, content: 'lorem ipsum', author_id: '2', game_id: '5'},
-    {id: '6', rating: 7, content: 'lorem ipsum', author_id: '1', game_id: '2'},
-    {id: '7', rating: 10, content: 'lorem ipsum', author_id: '3', game_id: '1'},
-  ]
-  
-  export default { games, authors, reviews }
+  {
+    id: "a1b2c3d4e5f6",
+    title: "The Legend of Zelda: Tears of the Kingdom",
+    platform: ["Nintendo Switch"],
+    genre: ["Action-Adventure", "Open World"],
+    releaseYear: 2023,
+    publisher: "Nintendo",
+    rating: 9.8,
+  },
+  {
+    id: "g7h8i9j0k1l2",
+    title: "Final Fantasy VII Remake Intergrade",
+    platform: ["PlayStation 5", "PC"],
+    genre: ["Action RPG"],
+    releaseYear: 2021,
+    publisher: "Square Enix",
+    rating: 9.5,
+  },
+  {
+    id: "m3n4o5p6q7r8",
+    title: "Elden Ring",
+    platform: ["PlayStation 5", "PC"],
+    genre: ["Action RPG", "Souls-like", "Open World"],
+    releaseYear: 2022,
+    publisher: "FromSoftware",
+    rating: 9.9,
+  },
+  {
+    id: "s9t0u1v2w3x4",
+    title: "Mario Kart 8 Deluxe",
+    platform: ["Nintendo Switch"],
+    genre: ["Kart Racing", "Party"],
+    releaseYear: 2017,
+    publisher: "Nintendo",
+    rating: 9.0,
+  },
+  {
+    id: "y5z6a7b8c9d0",
+    title: "Pokémon Scarlet",
+    platform: ["Nintendo Switch"],
+    genre: ["RPG", "Adventure", "Creature Collection"],
+    releaseYear: 2022,
+    publisher: "Nintendo",
+    rating: 8.5,
+  },
+  {
+    id: "e1f2g3h4i5j6",
+    title: "Marvel’s Spider-Man: Miles Morales",
+    platform: ["PlayStation 5", "PlayStation 4", "PC"],
+    genre: ["Action-Adventure", "Superhero"],
+    releaseYear: 2020,
+    publisher: "Sony Interactive Entertainment",
+    rating: 9.2,
+  },
+  {
+    id: "k7l8m9n0o1p2",
+    title: "Red Dead Redemption 2",
+    platform: ["PlayStation 4", "Xbox One", "PC"],
+    genre: ["Action-Adventure", "Open World", "Western"],
+    releaseYear: 2018,
+    publisher: "Rockstar Games",
+    rating: 9.7,
+  },
+  {
+    id: "q3r4s5t6u7v8",
+    title: "Cyberpunk 2077",
+    platform: ["PlayStation 5", "PC", "Xbox One"],
+    genre: ["Action RPG", "Open World", "Cyberpunk"],
+    releaseYear: 2020,
+    publisher: "CD Projekt Red",
+    rating: 7.8,
+  }, // Initial launch issues considered
+  {
+    id: "w9x0y1z2a3b4",
+    title: "Hades",
+    platform: ["Nintendo Switch", "PC", "PlayStation 5", "PlayStation 4"],
+    genre: ["Roguelike", "Action RPG"],
+    releaseYear: 2020,
+    publisher: "Supergiant Games",
+    rating: 9.6,
+  },
+  {
+    id: "c5d6e7f8g9h0",
+    title: "Animal Crossing: New Horizons",
+    platform: ["Nintendo Switch"],
+    genre: ["Simulation", "Social Simulation"],
+    releaseYear: 2020,
+    publisher: "Nintendo",
+    rating: 9.3,
+  },
+];
+
+let authors = [
+  {
+    id: "user_mario123",
+    name: "Mario Rossi",
+    verified: true,
+    joinDate: "2022-08-15",
+    location: "New York, USA",
+  },
+  {
+    id: "yoshi_gamer",
+    name: "Yoshi Tanaka",
+    verified: false,
+    joinDate: "2023-01-20",
+    location: "Tokyo, Japan",
+  },
+  {
+    id: "princess_peach",
+    name: "Peach Williams",
+    verified: true,
+    joinDate: "2021-05-01",
+    location: "London, UK",
+  },
+  {
+    id: "luigi_fan",
+    name: "Luigi Green",
+    verified: false,
+    joinDate: "2023-07-04",
+    location: "Los Angeles, USA",
+  },
+  {
+    id: "bowser_jr_dev",
+    name: "Bowser Jr.",
+    verified: false,
+    joinDate: "2024-03-10",
+    location: "Berlin, Germany",
+  },
+];
+
+let reviews = [
+  {
+    id: "review_101",
+    rating: 9,
+    content:
+      "The combat in Final Fantasy VII Remake is absolutely phenomenal! The blend of action and strategy is so well done. The story is engaging, and the visuals are stunning.",
+    author_id: "user_mario123",
+    game_id: "g7h8i9j0k1l2",
+    helpfulVotes: 15,
+    createdDate: "2023-05-22",
+  },
+  {
+    id: "review_102",
+    rating: 10,
+    content:
+      "Tears of the Kingdom is a masterpiece! The freedom of exploration and the new crafting mechanics are incredible. A true evolution of Breath of the Wild.",
+    author_id: "yoshi_gamer",
+    game_id: "a1b2c3d4e5f6",
+    helpfulVotes: 28,
+    createdDate: "2023-07-10",
+  },
+  {
+    id: "review_103",
+    rating: 7,
+    content:
+      "Elden Ring is challenging and rewarding. The world is vast and mysterious, but sometimes it can feel a bit too punishing for casual players.",
+    author_id: "princess_peach",
+    game_id: "m3n4o5p6q7r8",
+    helpfulVotes: 8,
+    createdDate: "2022-03-05",
+  },
+  {
+    id: "review_104",
+    rating: 5,
+    content:
+      "Mario Kart 8 Deluxe is fun for parties, but it hasn't changed much since the Wii U version. Could use some fresh content.",
+    author_id: "yoshi_gamer",
+    game_id: "s9t0u1v2w3x4",
+    helpfulVotes: 3,
+    createdDate: "2023-11-18",
+  },
+  {
+    id: "review_105",
+    rating: 8,
+    content:
+      "Pokemon Scarlet offers a new open-world experience, which is a nice change. The story is decent, and catching Pokémon is still addictive.",
+    author_id: "yoshi_gamer",
+    game_id: "y5z6a7b8c9d0",
+    helpfulVotes: 12,
+    createdDate: "2022-12-01",
+  },
+  {
+    id: "review_106",
+    rating: 7,
+    content:
+      "While I enjoyed the combat in FFVII Remake, some of the padding and side quests felt unnecessary.",
+    author_id: "user_mario123",
+    game_id: "g7h8i9j0k1l2",
+    helpfulVotes: 6,
+    createdDate: "2023-06-15",
+  },
+  {
+    id: "review_107",
+    rating: 10,
+    content:
+      "Absolutely blown away by Tears of the Kingdom! The creativity it inspires is unmatched. A must-play for any Switch owner.",
+    author_id: "princess_peach",
+    game_id: "a1b2c3d4e5f6",
+    helpfulVotes: 35,
+    createdDate: "2023-06-25",
+  },
+  {
+    id: "review_108",
+    rating: 9,
+    content:
+      "Miles Morales is a fantastic follow-up to Spider-Man. The story is personal and engaging, and the gameplay is smooth and fun.",
+    author_id: "luigi_fan",
+    game_id: "e1f2g3h4i5j6",
+    helpfulVotes: 18,
+    createdDate: "2021-01-05",
+  },
+  {
+    id: "review_109",
+    rating: 9.5,
+    content:
+      "Red Dead Redemption 2 is an immersive masterpiece. The attention to detail and the characters are incredible. A truly unforgettable experience.",
+    author_id: "bowser_jr_dev",
+    game_id: "k7l8m9n0o1p2",
+    helpfulVotes: 22,
+    createdDate: "2024-04-01",
+  },
+  {
+    id: "review_110",
+    rating: 6,
+    content:
+      "Cyberpunk 2077 had a rough launch, and while it's improved, it still has its issues. The world is interesting, but the bugs and performance problems can be frustrating.",
+    author_id: "user_mario123",
+    game_id: "q3r4s5t6u7v8",
+    helpfulVotes: 5,
+    createdDate: "2021-07-12",
+  },
+  {
+    id: "review_111",
+    rating: 10,
+    content:
+      "Hades is addictive and brilliant! The gameplay loop is incredibly satisfying, and the story and characters are surprisingly deep for a roguelike.",
+    author_id: "yoshi_gamer",
+    game_id: "w9x0y1z2a3b4",
+    helpfulVotes: 29,
+    createdDate: "2020-10-28",
+  },
+  {
+    id: "review_112",
+    rating: 9.2,
+    content:
+      "Animal Crossing: New Horizons provided a much-needed escape during difficult times. It's charming, relaxing, and full of endless possibilities.",
+    author_id: "princess_peach",
+    game_id: "c5d6e7f8g9h0",
+    helpfulVotes: 17,
+    createdDate: "2020-04-15",
+  },
+];
+
+export default { games, authors, reviews };

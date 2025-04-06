@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {ApolloQueryResult, useMutation} from '@apollo/client';
-import { ADD_GAME, UPDATE_GAME } from "../AuthorQuery";
+import { ADD_GAME, UPDATE_GAME } from "../GameQuery";
 import { Games } from "../AppContext";
 import { GameI } from "./ListingGames";
 

@@ -4,7 +4,7 @@ import CreateGame from './components/CreateGame';
 import ListingGames, { GameI } from './components/ListingGames';
 import { AppContext } from './AppContext';
 import { useQuery } from '@apollo/client';
-import { GET_GAMES } from './AuthorQuery';
+import { GET_GAMES } from './GameQuery';
 
 function App() {
   const [games, setGames] = useState([]);

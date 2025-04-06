@@ -1,6 +1,6 @@
 import { ApolloQueryResult, useMutation } from "@apollo/client";
 import { GameI } from "./ListingGames";
-import { DELETE_GAME } from "../AuthorQuery";
+import { DELETE_GAME } from "../GameQuery";
 import { Games } from "../AppContext";
 
 interface GameItemI {

@@ -1,37 +1,36 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { useEffect, useState } from 'react';
 import './App.css';
-import { GET_GAMES, ADD_GAME } from './AuthorQuery';
+import CreateGame from './components/CreateGame';
+import ListingGames, { GameI } from './components/ListingGames';
+import { AppContext } from './AppContext';
+import { useQuery } from '@apollo/client';
+import { GET_GAMES } from './AuthorQuery';
 
 function App() {
+  const [games, setGames] = useState([]);
+  const [selectedGames, setSelectedGame] = useState<GameI | null>(null);
+  const {loading, data, error, refetch } = useQuery(GET_GAMES);
+  
+  useEffect(() => {
+    if(data && data.games) {
+      setGames(data.games);
+    }
+  }, [data?.games]);
 
-  const {loading, error, data} = useQuery(GET_GAMES);
-  const [createGame] = useMutation(ADD_GAME);
-
-  const createGameHandler = () => {
-    createGame({
-      variables : {
-        "gameObj": {
-          "title": "Test Game - 3",
-          "platform": ["Action", "Art"]
-        },
-      }
-    })
+  const selectGameItem = (id: string) => {
+    const gameObj = games?.find((g: GameI) => g.id === id);
+    if(gameObj) {
+      const {id, title, platform} = gameObj;
+      setSelectedGame({id, title, platform});
+    }
   }
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
   return (
-    <>
-      <div>Listing All Games</div>
-      {
-        data.games.map((d: { id: string; title: string }) => {
-          return <div key={d.id}>{d.title}</div>
-        })
-      }
-      <button onClick={createGameHandler}>Add Game</button>
-    </>
+    <AppContext.Provider value={{games}}>
+      <CreateGame refetchGames={refetch} selectedGame={selectedGames} />
+      <ListingGames loading={loading} errorMessage={error?.message} itemClick={selectGameItem} />
+    </AppContext.Provider>
   )
 }
 
-export default App
+export default App;

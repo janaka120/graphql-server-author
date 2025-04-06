@@ -5,7 +5,8 @@ export const GET_GAMES = gql`
   query GetAllGames {
     games {
         id,
-        title
+        title,
+        platform
     }
   }
 `;
@@ -14,6 +15,15 @@ export const GET_GAMES = gql`
 export const ADD_GAME = gql`
   mutation AddGame($gameObj: AddGameInput!) {
     createGame(game: $gameObj) {
+      id,
+      title
+    }
+  }
+`
+
+export const UPDATE_GAME = gql`
+  mutation UpdateGame($id: ID!, $editGame: EditGameInput!) {
+    updateGame(id: $id, editGame: $editGame) {
       id,
       title
     }

@@ -35,13 +35,17 @@ const ListingGames = ({loading, errorMessage, itemClick, refetchGames}: ListingG
     }
 
     return(
-        <>
-            <h1 className="text-3xl font-bold underline pb-4">Listing Games</h1>
-            {games.map((game: GameI) => {
+        <section className="bg-white shadow-md rounded-md p-6">
+            <h2 className="text-xl font-semibold mb-4">Game Library</h2>
+            {games.length === 0 ? (
+                    <p className="text-gray-500">No games added yet.</p>
+                ) : games.map((game: GameI) => {
                 return (
-                <GameItem key={game.id} game={game} updateItem={onItemDeleteHandler} deleteItem={onItemUpdateHandler} refetchGames={refetchGames} />
+                    <ul className="divide-y divide-gray-200">
+                        <GameItem key={game.id} game={game} updateItem={onItemDeleteHandler} deleteItem={onItemUpdateHandler} refetchGames={refetchGames} />
+                    </ul>
             )})}
-        </>
+        </section>
     )
 }
 

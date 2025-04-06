@@ -21,6 +21,7 @@ const GameItem = ({game, updateItem, refetchGames}: GameItemI) => {
             }
         }).then(() => {
             refetchGames();
+            alert('Game deleted successfully!')
         }).catch((error) => {
             console.log("Delete Game Error >>", error);
         })
@@ -31,12 +32,29 @@ const GameItem = ({game, updateItem, refetchGames}: GameItemI) => {
     }
 
     return (
-        <div className="flex flex-row items-center justify-center m-4 gap-4" key={game.id}>
-        <span>{game.title}: {game?.platform?.join(',') || '-'}</span>
-        <button className="text-sm" onClick={() => onDeleteHandler(game.id)} disabled={loadingDelete}>{loadingDelete ? '⏳' : '❌'}</button>
-        <span>|</span>
-        <button className="text-sm" onClick={() => updateItem(game.id)}>✏️</button>
-    </div>   
+        <li key={game.id} className="py-3 flex items-center justify-between">
+            <div>
+                <span className="font-semibold">{game.title}</span>
+                {game.platform && game.platform.length > 0 && (
+                    <span className="text-gray-600 text-sm ml-2">({game.platform.join(', ')})</span>
+                )}
+            </div>
+            <div className="flex gap-2">
+                <button
+                    onClick={() => onDeleteHandler(game.id)}
+                    className="text-red-500 hover:text-red-700 focus:outline-none"
+                    disabled={loadingDelete}
+                >
+                    {loadingDelete ? <span className="animate-spin">⏳</span> : '🗑️'}
+                </button>
+                <button
+                    onClick={() => updateItem(game.id)}
+                    className="text-blue-500 hover:text-blue-700 focus:outline-none"
+                >
+                    ✏️
+                </button>
+            </div>
+        </li>
     )
 }
 

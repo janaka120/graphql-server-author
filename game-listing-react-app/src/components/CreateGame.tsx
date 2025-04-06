@@ -87,28 +87,53 @@ const CreateGame = (props: CreateGameI) => {
     }
     
     return(
-        <div className="p-4">
-            <h1 className="text-3xl font-bold underline">
-                {`${label} Game`}
-            </h1>
-            <div className="flex flex-row m-4 gap-4 justify-center items-center">
-                <div className="flex gap-4">
-                    <span>Game</span>
-                    <input value={title} onChange={onChangeHandler} className="border-blue-300 border-solid border-2" />
+        <div className="container mx-auto p-8">
+            {/* Add Game Section */}
+            <section className="bg-white shadow-md rounded-md p-6 mb-8">
+                <h2 className="text-xl font-semibold mb-4">{`${label} Game`}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                    <div>
+                        <label htmlFor="gameTitle" className="block text-gray-700 text-sm font-bold mb-2">Game Title</label>
+                        <input
+                            type="text"
+                            id="gameTitle"
+                            value={title}
+                            onChange={onChangeHandler}
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-blue-300"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="platformSelect" className="block text-gray-700 text-sm font-bold mb-2">Platform</label>
+                        <select
+                            id="platformSelect"
+                            value={platform}
+                            onChange={onSelectHandler}
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-blue-300"
+                        >
+                            <option value="">Select Platform</option>
+                            <option value="PS5">PlayStation 5</option>
+                            <option value="Xbox">Xbox</option>
+                            <option value="PC">PC</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="flex gap-4">
-                    <span>Platform</span>
-                    <select value={platform} onChange={onSelectHandler} className="border-blue-300 border-solid border-2">
-                        <option value="">Select</option>
-                        <option value="PS5">PS5</option>
-                        <option value="Xbox">Xbox</option>
-                        <option value="PC">PC</option>
-                    </select>
+                <div className="mt-4 flex justify-end gap-2">
+                    <button
+                        onClick={onClearHandler}
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                        Clear
+                    </button>
+                    <button
+                        onClick={onClickHandler}
+                        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={loading}
+                    >
+                        {loading ? 'Loading...' : (selectedGame?.id ? 'Update Game' : 'Add Game')}
+                    </button>
                 </div>
-                <button onClick={onClearHandler} className="border px-2 border-b-gray-600 border-solid text-black bg-white hover:bg-gray-500 hover:text-white">Clear</button>
-                <button onClick={onClickHandler} className="border px-2 border-blue-500 border-solid text-white bg-blue-400 hover:bg-white hover:text-blue-400">{loading ? 'Loading...' : label}</button>
-            </div>
-            {error && <span className="text-red-500 text-xs">{createError?.message || updateError?.message}</span>}
+                {error && <p className="text-red-500 text-sm mt-2">{error.message}</p>}
+            </section>
         </div>
     ) 
 }

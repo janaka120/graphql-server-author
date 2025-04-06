@@ -25,10 +25,14 @@ function App() {
     }
   }
 
+  const onClearHandler = () => {
+    setSelectedGame(null)
+  }
+
   return (
     <AppContext.Provider value={{games}}>
-      <CreateGame refetchGames={refetch} selectedGame={selectedGames} />
-      <ListingGames loading={loading} errorMessage={error?.message} itemClick={selectGameItem} />
+      <CreateGame refetchGames={refetch} selectedGame={selectedGames} clear={onClearHandler}/>
+      <ListingGames loading={loading} errorMessage={error?.message} itemClick={selectGameItem} refetchGames={refetch} />
     </AppContext.Provider>
   )
 }

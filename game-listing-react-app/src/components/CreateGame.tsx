@@ -7,9 +7,10 @@ import { GameI } from "./ListingGames";
 interface CreateGameI {
     selectedGame: GameI | null;
     refetchGames: (variables?: {gameObj: Games} | undefined) => Promise<ApolloQueryResult<any>>;
+    clear: () => void;
 }
 const CreateGame = (props: CreateGameI) => {
-    const {refetchGames, selectedGame} = props;
+    const {refetchGames, selectedGame, clear} = props;
     const [title, setTitle] = useState(selectedGame?.title || '');
     const [platform, setPlatform] = useState(selectedGame?.platform?.[0] || '');
 
@@ -18,7 +19,7 @@ const CreateGame = (props: CreateGameI) => {
             setTitle(selectedGame.title);
             setPlatform(selectedGame?.platform?.[0] || '');
         }
-    }, [selectedGame?.id])
+    }, [selectedGame?.id, selectedGame?.platform, selectedGame?.title]);
 
     const[createGame, {loading: createLoading, error: createError}] = useMutation(ADD_GAME);
     const [updateGame, {loading: updateLoading, error: updateError}] = useMutation(UPDATE_GAME);
@@ -27,6 +28,11 @@ const CreateGame = (props: CreateGameI) => {
     const label = selectedGame?.id ? 'Update' : 'Add';
     const loading =  createLoading || updateLoading;
     const error = createError || updateError;
+
+    const clearInputFields = () => {
+        setTitle('');
+        setPlatform('');
+    }
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
@@ -54,8 +60,7 @@ const CreateGame = (props: CreateGameI) => {
                     }
                 }
             }).then(() => {
-                setTitle('');
-                setPlatform('');
+                clearInputFields();
                 refetchGames();
             })
         }else {
@@ -67,12 +72,17 @@ const CreateGame = (props: CreateGameI) => {
                     }
                 }
             }).then(() => {
-                setTitle('');
-                setPlatform('');
+                clearInputFields();
                 refetchGames();
             })
         }
     }
+
+    const onClearHandler = () => {
+        clearInputFields();
+        clear();
+    }
+    
     return(
         <div className="p-4">
             <h1 className="text-3xl font-bold underline">
@@ -92,6 +102,7 @@ const CreateGame = (props: CreateGameI) => {
                         <option value="PC">PC</option>
                     </select>
                 </div>
+                <button onClick={onClearHandler} className="border px-2 border-b-gray-600 border-solid text-black bg-white">Clear</button>
                 <button onClick={onClickHandler} className="border px-2 border-blue-500 border-solid text-white bg-blue-400">{loading ? 'Loading...' : label}</button>
             </div>
             {error && <span className="text-red-500 text-xs">{createError?.message || updateError?.message}</span>}

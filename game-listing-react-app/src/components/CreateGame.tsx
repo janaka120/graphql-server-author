@@ -32,6 +32,7 @@ const CreateGame = (props: CreateGameI) => {
     const clearInputFields = () => {
         setTitle('');
         setPlatform('');
+        clear();
     }
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +63,7 @@ const CreateGame = (props: CreateGameI) => {
             }).then(() => {
                 clearInputFields();
                 refetchGames();
+                alert('Game updated successfully!');
             })
         }else {
             createGame({
@@ -74,6 +76,7 @@ const CreateGame = (props: CreateGameI) => {
             }).then(() => {
                 clearInputFields();
                 refetchGames();
+                alert('Game added successfully!');
             })
         }
     }
@@ -90,7 +93,7 @@ const CreateGame = (props: CreateGameI) => {
             </h1>
             <div className="flex flex-row m-4 gap-4 justify-center items-center">
                 <div className="flex gap-4">
-                    <span>Title</span>
+                    <span>Game</span>
                     <input value={title} onChange={onChangeHandler} className="border-blue-300 border-solid border-2" />
                 </div>
                 <div className="flex gap-4">
@@ -102,8 +105,8 @@ const CreateGame = (props: CreateGameI) => {
                         <option value="PC">PC</option>
                     </select>
                 </div>
-                <button onClick={onClearHandler} className="border px-2 border-b-gray-600 border-solid text-black bg-white">Clear</button>
-                <button onClick={onClickHandler} className="border px-2 border-blue-500 border-solid text-white bg-blue-400">{loading ? 'Loading...' : label}</button>
+                <button onClick={onClearHandler} className="border px-2 border-b-gray-600 border-solid text-black bg-white hover:bg-gray-500 hover:text-white">Clear</button>
+                <button onClick={onClickHandler} className="border px-2 border-blue-500 border-solid text-white bg-blue-400 hover:bg-white hover:text-blue-400">{loading ? 'Loading...' : label}</button>
             </div>
             {error && <span className="text-red-500 text-xs">{createError?.message || updateError?.message}</span>}
         </div>
